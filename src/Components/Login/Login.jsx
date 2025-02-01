@@ -2,23 +2,36 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Login.css";
 import logo from "../../assets/logo.svg";
+import axios from 'axios';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
 
     // Dummy authentication check (Replace with real API call)
-    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    if (username === "XYZ" && password === "0987532345") {
-      localStorage.setItem("user", JSON.stringify({ username })); // Store user data
-      navigate("/welcome"); // Redirect to Welcome page
-    } else {
-      alert("Invalid credentials! Please try again.");
+    try {
+      const res = await axios.post(
+        `http://localhost:8082/api/v1/auth/login`, {
+          email, 
+          password
+        });
+      if (res && res.data.success){
+        alert("Logged in successfully.");
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate( location.state || "/welcome");
+      } else {
+        alert("Invalid credentials! Please try again.");
+      }
+
+    } catch (error){
+      console.log(error);
+      alert("Something went wrong");
     }
   };
 
@@ -42,8 +55,8 @@ const Login = () => {
           <form onSubmit={handleLogin}>
             {/* Username Input */}
             <div className="input-group">
-              <label htmlFor="username">User Name</label>
-              <input type="text" id="username" name="username" defaultValue="XYZ" required />
+              <label htmlFor="email">Email</label>
+              <input type="text" id="email" name="email" place="XYZ" required />
             </div>
 
             {/* Password Input */}

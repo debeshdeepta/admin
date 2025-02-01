@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Register.css";
 import logo from "../../assets/logo.svg";
+import axios from 'axios';
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleRegister = (e) => {
+  const handleRegister = async(e) => {
     e.preventDefault();
 
     // Get form values
@@ -29,11 +30,26 @@ const Register = () => {
       return;
     }
 
-    // Simulate successful registration (Store user data in local storage)
-    localStorage.setItem("user", JSON.stringify({ name, email, phone }));
+    try {
+      const res = await axios.post(
+        `http://localhost:8082/api/v1/auth/register`, {
+          name, 
+          email, 
+          phone, 
+          password
+        });
+      if (res && res.data.success){
+        alert("Account created successfully! Redirecting to login...");
+        navigate("/");
+      } else {
+        alert("Failed to create account");
+      }
 
-    alert("Account created successfully! Redirecting to login...");
-    navigate("/"); // Navigate to Login page
+    } catch (error){
+      console.log(error);
+      alert("Something went wrong");
+    }
+
   };
 
   return (
