@@ -1,0 +1,120 @@
+/* Full-screen Wrapper */
+.register-wrapper {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Background Image */
+  .register-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/loginbg.svg") no-repeat center center/cover;
+    z-index: -1;
+  }
+  
+  /* Register Container */
+  .register-container {
+    display: flex;
+    width: 85%;
+    height: 80%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Left Side */
+  .register-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .register-logo {
+    width: 200px;
+  }
+  
+  /* Right Side - White Background */
+  .register-right {
+    flex: 1;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .register-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .register-subtitle {
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  /* Form Styling */
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  .password-group {
+    position: relative;
+  }
+  
+  .password-group i {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .register-button button {
+    width: 100%;
+    padding: 10px;
+    background-color: #199FB1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .register-button button:hover {
+    background-color: darkcyan;
+  }
+  
+  /* Login Link */
+  .login-link {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .login-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
